@@ -1,0 +1,25 @@
+{
+  "name": "innohvabot",
+  "version": "1.0.0",
+  "description": "A discord bot for the official server of the enterprise \"InnohvaCorp\", on the minecraft server NationsGlory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "InnohVateur",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "dayjs": "1.10.7",
+    "discord-buttons": "4.0.0-deprecated",
+    "discord.js": "13.6.0",
+    "dotenv": "16.0.0",
+    "glob": "7.2.0",
+    "mongoose": "6.2.3",
+    "ms": "^2.1.3"
+  }
+}
