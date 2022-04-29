@@ -27,15 +27,15 @@ module.exports = {
             .addFields([
                 {
                     name:'Site officiel de NationsGlory',
-                    description:'https://nationsglory.fr'
+                    value:'https://nationsglory.fr'
                 },
                 {
                     name:'Discord de NationsGlory',
-                    description:'https://discord.gg/nationsglory'
+                    value:'https://discord.gg/nationsglory'
                 },
                 {
                     name:'Discord du serveur Lime',
-                    description:'https://www.discord.gg/QsaHcNSkua'
+                    value:'https://www.discord.gg/QsaHcNSkua'
                 }
             ])
             .setColor('#1F4629');
@@ -49,15 +49,15 @@ module.exports = {
             .addFields([
                 {
                     name:'Site officiel de NationsGlory',
-                    description:'https://nationsglory.fr'
+                    value:'https://nationsglory.fr'
                 },
                 {
                     name:'Discord de NationsGlory',
-                    description:'https://discord.gg/nationsglory'
+                    value:'https://discord.gg/nationsglory'
                 },
                 {
                     name:'Discord du serveur Lime',
-                    description:'https://www.discord.gg/QsaHcNSkua'
+                    value:'https://www.discord.gg/QsaHcNSkua'
                 }
             ])
             .setColor('1F4629');
