@@ -34,7 +34,7 @@ module.exports = {
         message.channel.send({embeds: [embed]});   
     },
     async runInteraction(client, interaction){
-        const number = Math.round(Math.random * (6-1) + 1);
+        const number = Math.round(Math.random() * (6-1) + 1);
         let image;
         if(number == 1){
             image = 'https://img1.freepng.fr/20171220/zte/number-1-png-5a3ab53c779c24.4291118215137969244899.jpg'
