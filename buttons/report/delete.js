@@ -1,5 +1,5 @@
 module.exports = {
-    name : 'agree',
+    name : 'delete',
     async runInteraction(client, interaction){
         if(!interaction.member.permissions.has('MANAGE_THREADS')) return interaction.reply({content:"Vous n'avez pas la permission requise pour effectuer cette action !", ephemeral:true});
         interaction.channel.delete();
