@@ -1,9 +1,9 @@
-const util = require("util");
+import clipboard from 'clipboardy';
 
 module.exports = {
     name : 'copy-discord-link',
     async runInteraction(client, interaction){
-        require('child_process').spawn('clip').stdin.end(util.inspect("content_for_the_clipboard"));
+        clipboard.write('https://discord.gg/Nq4wNCsZ2W')
         interaction.reply({content:"Lien d'invitation du discord correctement copié !", ephemeral:true});
     }
 }
