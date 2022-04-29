@@ -1,8 +1,6 @@
-const copy = require('copy-to-clipboard-ultralight');
 module.exports = {
     name : 'copy-discord-link',
     async runInteraction(client, interaction){
-        copy('https://discord.gg/Nq4wNCsZ2W')
-        interaction.reply({content:"Lien d'invitation du discord correctement copié !", ephemeral:true});
+        interaction.reply({content:"Veuillez copier le lien suivant : 'https://discord.gg/Nq4wNCsZ2W'", ephemeral:true});
     }
 }
