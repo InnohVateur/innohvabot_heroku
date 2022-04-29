@@ -9,7 +9,7 @@ module.exports = {
     usage:'ban [@Utilisateur visé] ["perm"/nombre de jours] [raison]',
     examples:['ban @DonSpiration 365 DETESTE LA RACLETTE', 'ban @InnohVateur perm REBELLION DES ROBOTS !'],
     hasPermissions:true,
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
         if(args[0]) return message.channel.send('Spécifiez un membre à bannir, merci.');
         if(args[1]) return message.channel.send('Spécifiez la durée du bannissement ou "perm" pour bannir définitivement, merci.');
         if(args[2]) return message.channel.send('Spécifiez la raison du bannissement, merci.');
@@ -20,7 +20,7 @@ module.exports = {
             if(!target.bannable) return message.channel.send({content:'Vous ne pouvez pas bannir ce membre...', ephemeral:true});
             target.ban({reason});
             message.channel.send({content:'Membre bannis avec succès !', ephemeral:true});
-            const logChannel = client.channels.cache.get('968122752454242306');
+            const logChannel = client.channels.cache.get(guildSettings.logChannel);
             const logEmbed = new MessageEmbed()
                 .setTitle('Un membre c\'est fait bannir du serveur')
                 .setDescription(`Le membre ${target.user.tag} (${target.id}) s'est fait bannir définitivement avec la raison ${reason}`)
@@ -33,7 +33,7 @@ module.exports = {
             if(convertedDuration<=0 || convertedDuration>7) return message.channel.send('Vous devez choisir un nombre entre 1 et 7');
             target.ban({days:convertedDuration, reason:reason});
             message.channel.send({content:'Membre bannis avec succès !', ephemeral:true});
-            const logChannel = client.channels.cache.get('968122752454242306');
+            const logChannel = client.channels.cache.get(guildSettings.logChannel);
             const logEmbed = new MessageEmbed()
                 .setTitle('Un membre c\'est fait bannir du serveur')
                 .setDescription(`Le membre ${target.user.tag} (${target.id}) s'est fait bannir pendant ${duration} jours avec la raison ${reason}`)
@@ -65,7 +65,7 @@ module.exports = {
             required:true
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
         const target = interaction.options.getMember('target');
         const duration = interaction.options.getString('duration');
         const reason = interaction.options.getString('reason');
@@ -73,7 +73,7 @@ module.exports = {
             if(!target.bannable) return interaction.reply({content:'Vous ne pouvez pas bannir ce membre...', ephemeral:true});
         target.ban({reason});
         interaction.reply({content:'Membre bannis avec succès !', ephemeral:true});
-        const logChannel = client.channels.cache.get('968122752454242306');
+        const logChannel = client.channels.cache.get(guildSettings.logChannel);
         const logEmbed = new MessageEmbed()
             .setTitle('Un membre c\'est fait bannir du serveur')
             .setDescription(`Le membre ${target.user.tag} (${target.id}) s'est fait bannir définitivement avec la raison ${reason}`)
@@ -87,7 +87,7 @@ module.exports = {
             if(convertedDuration<=0 || convertedDuration>7) return interaction.reply({content:'Vous devez choisir un nombre entre 1 et 7', ephemeral:true});
             target.ban({days:convertedDuration, reason:reason});
             interaction.reply({content:'Membre bannis avec succès !', ephemeral:true});
-            const logChannel = client.channels.cache.get('968122752454242306');
+            const logChannel = client.channels.cache.get(guildSettings.logChannel);
             const logEmbed = new MessageEmbed()
                 .setTitle('Un membre c\'est fait bannir du serveur')
                 .setDescription(`Le membre ${target.user.tag} (${target.id}) s'est fait bannir pendant ${duration} jours avec la raison ${reason}`)

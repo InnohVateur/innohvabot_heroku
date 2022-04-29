@@ -10,7 +10,7 @@ module.exports = {
     usage:'mute [target] [duration] [reason]',
     examples:['mute @DonSpiration 1y SI les lasagnes c\'est bon !', 'mute @InnohVateur 3h I\'ll be back !'],
     hasPermissions:true,
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
         if(args[0]) return message.channel.send('Spécifiez un membre à mute, merci.');
         if(args[1]) return message.channel.send('Spécifiez la durée du mute ou "perm" pour bannir définitivement, merci.');
         if(args[2]) return message.channel.send('Spécifiez la raison du mute, merci.');
@@ -24,7 +24,7 @@ module.exports = {
 
         target.timeout(convertedDuration, reason);
         message.channel.send(`Le membre ${target} a bien été mute !`);
-        const logChannel = client.channels.cache.get('968122752454242306');
+        const logChannel = client.channels.cache.get(guildSettings.logChannel);
         const logEmbed = new MessageEmbed()
             .setTitle('Un membre c\'est fait mute sur le serveur')
             .setDescription(`Le membre ${target} (${target.id}) s'est fait mute pendant ${convertedDuration} avec la raison ${reason}`)
@@ -54,7 +54,7 @@ module.exports = {
             required:true
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
         const target = interaction.options.getMember('target');
         const duration = interaction.options.getString('duration');
         const reason = interaction.options.getString('reason');
@@ -65,7 +65,7 @@ module.exports = {
 
         target.timeout(convertedDuration, reason);
         interaction.reply(`Le membre ${target} a bien été mute !`);
-        const logChannel = client.channels.cache.get('968122752454242306');
+        const logChannel = client.channels.cache.get(guildSettings.logChannel);
         const logEmbed = new MessageEmbed()
             .setTitle('Un membre c\'est fait mute sur le serveur')
             .setDescription(`Le membre ${target} (${target.id}) s'est fait mute pendant ${convertedDuration} avec la raison ${reason}`)
