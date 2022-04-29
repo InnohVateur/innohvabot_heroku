@@ -4,7 +4,7 @@ const buttons = new MessageActionRow()
         new MessageButton()
             .setCustomId('copy-discord-link')
             .setLabel('Copier le lien d\'invitation')
-            .setStyle('SECONARY'),
+            .setStyle('SECONDARY'),
         new MessageButton()
             .setLabel('Nous soutenir')
             .setURL('https://nationsglory.fr/from/InnohVateur')
