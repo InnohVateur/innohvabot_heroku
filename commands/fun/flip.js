@@ -1,13 +1,13 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name : 'dice',
-    description: 'Renvoie un résultat de dé aléatoire',
+    name : 'flip',
+    description: 'Renvoie un le résultat d\'un pile ou face.',
     permissions:[],
     ownerOnly:false,
-    usage:'dice',
+    usage:'flip',
     hasPermissions:false,
-    examples:['dice'],
+    examples:['flip'],
     category:'fun',
     async run(client, message, args){
         const number = Math.round(Math.random());
