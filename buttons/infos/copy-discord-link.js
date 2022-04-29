@@ -1,4 +1,4 @@
-const clipboardy = require('clipboardy')
+const clipboardy = require('clipboardy');
 
 module.exports = {
     name : 'copy-discord-link',
