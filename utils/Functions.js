@@ -7,7 +7,7 @@ module.exports = client => {
         return guilData;
     };
     client.createGuild = async guild => {
-        const createGuild = new Guild({ id: guild.id });
+        const createGuild = await new Guild({ id: guild.id });
         createGuild.save().then(g => Logger.guild(`Le bot a été ajouté sur le serveur ${g.name} (${g.id})`));   
     };
     client.updateGuild = async (guild, settings) => {
@@ -15,6 +15,7 @@ module.exports = client => {
         if(typeof guildData != 'object') guildData = {};
         for (const key in settings) {
             if(guildData[key] != settings[key]) guildData[key] = settings[key];
-        }return guildData.updateOne(settings);
+        }
+        return guildData.updateOne(settings);
     }
 }

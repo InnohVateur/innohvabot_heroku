@@ -11,7 +11,7 @@ module.exports = async client => {
             return Logger.typo(`ERR => unknown event [${eventFile}]`)
         }
 
-        Logger.event(`Loading event ${event.name}...`);
+        Logger.event(`- ${event.name}...`);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(client, ...args));
         } else {

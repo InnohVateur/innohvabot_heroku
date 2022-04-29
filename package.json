@@ -17,8 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "4.1.2",
-    "clipboardy": "^3.0.0",
-    "copy-to-clipboard-ultralight": "^1.0.14",
     "dayjs": "1.10.7",
     "discord-buttons": "4.0.0-deprecated",
     "discord.js": "13.6.0",

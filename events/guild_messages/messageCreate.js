@@ -7,11 +7,11 @@ module.exports = {
         if (message.author.bot) return;
         if (!message.content.startsWith(prefix)) return;
 
-        let guildSettings = await client.getGuild(message.guild)
+        let guildSettings = await client.getGuild(message.guild);
 
         if(!guildSettings){
             await client.createGuild(message.guild);
-            guildSettings = await client.getGuild(message.guild)
+            guildSettings = await client.getGuild(message.guild);
         }
 
         const args = message.content.slice(prefix.length).trim().split(/ +/g);

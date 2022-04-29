@@ -8,7 +8,7 @@ module.exports = {
     examples:['dbconfig', 'dbconfig prefix ?', 'dbconfig prefix'],
     hasPermissions:true,
     //guildSettings
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
         if(!args[0] || !args[0].match(/^(prefix|logChannel)$/)) return message.channel.send('/!\\Merci d\'entrer une clé valide/!\\');
         if(args[0] == 'prefix'){
             if(args[1]){
@@ -47,7 +47,7 @@ module.exports = {
             type:'STRING'
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
         const key = interaction.options.getString("key");
         const value = interaction.options.getString("value")
         if(key == 'prefix'){
