@@ -4,9 +4,12 @@ module.exports = {
     name : 'ready',
     once : true,
     async execute(client) {
+        let guildsCount = await client.guilds.fetch();
+        let usersCount = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);
+
         client.user.setPresence({ activities: [{ name: '50 nuances de Tiber', type:'WATCHING' }], status: 'dnd' });
-        Logger.client("The bot is successfully logged in_");
-        const currentGuild = await client.guilds.cache.get('962013773823082546');
-        currentGuild.commands.set(client.commands.map(cmd => cmd));
+
+        Logger.client(`InnohvaBot is ready to be used by ${usersCount} users on ${guildsCount} servers_`);
+        client.application.commands.set(client.commands.map(cmd => cmd));
     }
 }

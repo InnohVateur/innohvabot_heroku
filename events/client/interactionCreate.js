@@ -2,11 +2,12 @@ module.exports = {
     name : 'interactionCreate',
     once : false,
     async execute(client, interaction) {
-        let guildSettings = await client.getGuild(interaction.guild)
+        let guildSettings = await client.getGuild(interaction.guild);
 
         if(!guildSettings){
             await client.createGuild(interaction.guild);
-            guildSettings = await client.getGuild(interaction.guild)
+            guildSettings = await client.getGuild(interaction.guild);
+            return interaction.reply({content:"Le bot a mis à jour la base de données à cause d'une erreur interne, veuillez retaper la commande.", ephemeral:true});
         }
 
         if(interaction.isCommand() || interaction.isContextMenu()){

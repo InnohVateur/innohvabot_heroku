@@ -9,7 +9,7 @@ module.exports = {
     hasPermissions:true,
     //guildSettings
     async run(client, message, args, guildSettings){
-        if(!args[0] || !args[0].match(/^(prefix|logChannel)$/)) return message.channel.send('/!\\Merci d\'entrer une clé valide/!\\');
+        if(!args[0] || !args[0].match(/^(prefix|logChannel|airportChannel)$/)) return message.channel.send('/!\\Merci d\'entrer une clé valide/!\\');
         if(args[0] == 'prefix'){
             if(args[1]){
                 await client.updateGuild(message.guild, {prefix:args[1]});
@@ -22,6 +22,12 @@ module.exports = {
                 return message.channel.send(`Nouvelle valeur de logChannel : ${args[1]}`);
             }
             message.channel.send(`Valeur de logChannel : ${guildSettings.logChannel}`);
+        }else if (args[0] == 'airportChannel'){
+            if(args[1]){
+                await client.updateGuild(interaction.guild, {airportChannel:args[1]});
+                return message.channel.send(`Nouvelle valeur de airportChannel : ${args[1]}`);
+            }
+            message.channel.send(`Valeur de airportChannel : ${guildSettings.airportChannel}`);
         }
     },
     options:[
@@ -38,6 +44,10 @@ module.exports = {
                 {
                     name:'logChannel',
                     value:'logChannel'
+                },
+                {
+                    name:'airportChannel',
+                    value:'airportChannel'
                 }
             ]
         },
@@ -62,6 +72,12 @@ module.exports = {
                 return interaction.reply(`Nouvelle valeur de logChannel : ${value}`);
             }
             interaction.reply(`Valeur de logChannel : ${guildSettings.logChannel}`);
+        }else if(key == 'airportChannel'){
+            if(value){
+                await client.updateGuild(interaction.guild, {airportChannel:value});
+                return interaction.reply(`Nouvelle valeur de airportChannel : ${value}`);
+            }
+            interaction.reply(`Valeur de airportChannel : ${guildSettings.airportChannel}`);
         }
     }
 }

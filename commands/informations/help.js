@@ -1,7 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const { readdirSync } = require('fs');
 const commandFolder = readdirSync('./commands');
-const prefix = '.'
 
 module.exports = {
     name : 'help',
@@ -12,7 +11,8 @@ module.exports = {
     permissions:[],
     hasPermissions:false,
     description: 'Commande d\'aide',
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
+        const prefix = guildSettings.prefix;
         if(!args.length){
             const noArgsEmbed = new MessageEmbed()
                 .setColor('#f54ea7')
@@ -57,7 +57,8 @@ module.exports = {
             required:false
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
+        const prefix = guildSettings.prefix;
         const cmdName = interaction.options.getString('command');
         if(!cmdName){
             const noArgsEmbed = new MessageEmbed()

@@ -1,5 +1,3 @@
-const prefix = '.';
-
 module.exports = {
     name : 'messageReactionAdd',
     once : false,

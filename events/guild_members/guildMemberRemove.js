@@ -38,12 +38,12 @@ module.exports = {
         const exitTimestamp = Formatters.time(dayjs().unix(), Formatters.TimestampStyles.ShortDateTime);
         const relativeExitTimestamp = Formatters.time(dayjs().unix(), Formatters.TimestampStyles.RelativeTime);
 
-        const currentGuild = await client.guilds.cache.get('962013773823082546');
+        const fetchGuild = await client.getGuild(member.guild);
         const embed = new MessageEmbed()
-            .setTitle(`Un membre a quitté le serveur \`${currentGuild.name}\` (\`${currentGuild.id}\`)`)
+            .setTitle(`Un membre a quitté le serveur \`${member.guild.name}\` (\`${member.guild.id}\`)`)
             .setColor('LIGHT_GREY')
             .setTimestamp()
-            .setFooter({text:`Un membre a quitté le serveur ${currentGuild.name}`, iconURL:currentGuild.iconURL()})
+            .setFooter({text:`Un membre a quitté le serveur ${member.guild.name}`, iconURL:member.guild.iconURL()})
             .setDescription(`± Nom d'utilisateur : ${member.displayName} avec l'ID \`${member.id}\`
             ± Créé le : ${creationTimestamp} (${relativeCreationTimestamp})
             ± Rejoint le : ${joinTimestamp} (${relativeJoinTimestamp})
@@ -53,7 +53,7 @@ module.exports = {
             `)
             .setThumbnail(member.user.displayAvatarURL())
             .setAuthor({name:`${member.user.tag} (${member.id})`, iconURL:member.user.displayAvatarURL()});
-        const logChannel = client.channels.cache.get("968122752454242306");
+        const logChannel = client.channels.cache.get(fetchGuild.logChannel);
         logChannel.send({embeds: [embed]});
 
         const publicEmbed = new MessageEmbed()
@@ -61,9 +61,9 @@ module.exports = {
             .setDescription(`Bonne continuation à toi, ${member.displayName}, nous espérons te revoir au plus vite !`)
             .setColor('DARK_RED')
             .setThumbnail(member.user.displayAvatarURL())
-            .setFooter({text:`Un membre a quitté le serveur ${currentGuild.name}...`, iconURL:currentGuild.iconURL()})
+            .setFooter({text:`Un membre a quitté le serveur ${member.guild.name}...`, iconURL:member.guild.iconURL()})
             .setTimestamp();
-        const airportChannel = client.channels.cache.get('967736090192654397');
+        const airportChannel = client.channels.cache.get(fetchGuild.airportChannel);
         airportChannel.send({embeds: [publicEmbed]});
     }
 }
