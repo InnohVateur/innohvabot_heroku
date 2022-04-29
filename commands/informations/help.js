@@ -82,7 +82,7 @@ module.exports = {
             .addFields([
                 {
                     name:'Syntaxe',
-                    value:`${cmd.usage}`,
+                    value:`${prefix}${cmd.usage}`,
                     inline:true
                 },
                 {
