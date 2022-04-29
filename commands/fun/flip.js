@@ -35,7 +35,7 @@ module.exports = {
         }
         const embed = new MessageEmbed()
             .setTitle(`Le résultat est ${number==0?'pile':'face'} !`)
-            .setDescription(`Le lancer est terminé, la pièce est tombée sur ${number} !`)
+            .setDescription(`Le lancer est terminé, la pièce est tombée sur ${number==0?'pile':'face'} !`)
             .setColor('RED')
             .setFooter({text:`Lancer généré par ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL()})
             .setThumbnail(image);
