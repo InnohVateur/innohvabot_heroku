@@ -32,6 +32,7 @@ module.exports = {
             thread.members.add(message.author);
             thread.send({embeds: [embed], components: [buttons]});
         });
+        message.channel.send("Fil créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.")
 
     },
     options:[
@@ -55,5 +56,6 @@ module.exports = {
             thread.members.add(interaction.user);
             thread.send({embeds: [embed], components: [buttons]});
         });
+        interaction.reply({content:"Fil créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.", ephemeral:true})
     }
 }

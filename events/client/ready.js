@@ -9,7 +9,7 @@ module.exports = {
 
         client.user.setPresence({ activities: [{ name: '50 nuances de Tiber', type:'WATCHING' }], status: 'dnd' });
 
-        Logger.client(`InnohvaBot is ready to be used by ${usersCount} users on ${guildsCount} servers_`);
+        Logger.client(`InnohvaBot is ready to be used by ${usersCount} users on ${guildsCount.size} servers_`);
         client.application.commands.set(client.commands.map(cmd => cmd));
     }
 }
