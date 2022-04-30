@@ -10,11 +10,13 @@ module.exports = {
     examples:['update'],
     hasPermissions:true,
     async run(client, message, args, guildSettings){
-        await Guild.updateMany({}, {"$set":{"pollChannel":"968151238908715128"}, upsert:true});
+        await Guild.updateMany({}, {"$set":{"reportChannel":"967728422329679892"}, upsert:true});
+        await Guild.updateMany({}, {"$set":{"suggestChannel":"968151238908715128"}, upsert:true});
         message.channel.send("Nouvelles données ajoutées !");
     },
     async runInteraction(client, interaction, guildSettings){
-        await Guild.updateMany({}, {"$set":{"pollChannel":"968151238908715128"}, upsert:true});
+        await Guild.updateMany({}, {"$set":{"reportChannel":"967728422329679892"}, upsert:true});
+        await Guild.updateMany({}, {"$set":{"suggestChannel":"968151238908715128"}, upsert:true});
         interaction.reply("Nouvelles données ajoutées !");
     }
 }

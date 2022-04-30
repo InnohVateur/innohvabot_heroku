@@ -9,9 +9,9 @@ module.exports = {
     examples:['suggest Pourquoi ne pas ajouter de joli chiens sur la photo de profil du serveur ?'],
     hasPermissions:false,
     description: 'Faire une suggestion',
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
         if(!args[0]) return message.channel.send('Erreur : Merci de précise une description pour votre suggestion !');
-        const suggestChannel = client.channels.cache.get('968151238908715128');
+        const suggestChannel = client.channels.cache.get(guildSettings.suggestChannel);
         const embed = new MessageEmbed()
             .setAuthor({name:`Nouvelle sugegstion de la part de ${message.author.username} !`, iconURL:message.author.displayAvatarURL()})
             .setTitle('Sondage')
@@ -39,10 +39,10 @@ module.exports = {
             required:true
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
         const suggestTitle = interaction.options.getString("title");
         const suggestContent = interaction.options.getString('description');
-        const suggestChannel = client.channels.cache.get('968151238908715128');
+        const suggestChannel = client.channels.cache.get(guildSettings.suggestChannel);
 
         const embed = new MessageEmbed()
             .setAuthor({name:`Nouvelle suggestion de la part de ${interaction.user.tag} !`, iconURL:interaction.user.displayAvatarURL()})

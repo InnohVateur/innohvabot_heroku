@@ -19,19 +19,15 @@ module.exports = {
     examples:['report DonSpiration il a mangé tout mon cookie'],
     hasPermissions:false,
     description: 'Prévenir le staff d\'un problème',
-    async run(client, message, args){
-        const reportChannel = client.channels.cache.get("967728422329679892");
+    async run(client, message, args, guildSettings){
+        const reportChannel = client.channels.cache.get(guildSettings.reportChannel);
         if(!args[0]) return message.channel.send("Merci de préciser la raison de votre report !");
-        interaction.member.roles.add("969208672343445564");
         const embed = new MessageEmbed()
             .setTitle(`Nouveau report de la part de ${message.member}`)
             .setDescription(args.slice(0).join(' '))
             .setColor('RED')
             .setFooter({text:"Nouveau report"});
-        reportChannel.threads.create({name:`Report de ${message.author.username}`}).then(thread => {
-            thread.members.add(message.author);
-            thread.send({embeds: [embed], components: [buttons]});
-        });
+        
         message.channel.send("Fil créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.")
 
     },
@@ -43,8 +39,8 @@ module.exports = {
             required:true
         }
     ],
-    async runInteraction(client, interaction){
-        const reportChannel = client.channels.cache.get("967728422329679892");
+    async runInteraction(client, interaction, guildSettings){
+        const reportChannel = client.channels.cache.get(guildSettings.reportChannel);
         interaction.member.roles.add("969208672343445564");
         const report = interaction.options.getString("report");
         const embed = new MessageEmbed()
