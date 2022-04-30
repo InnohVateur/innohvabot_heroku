@@ -1,4 +1,5 @@
 const { Guild } = require('../models');
+const { Giveaway } = require('../models');
 const Logger = require('./Logger');
 
 module.exports = client => {

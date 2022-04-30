@@ -9,7 +9,7 @@ module.exports = {
     examples:['poll'],
     hasPermissions:false,
     description: 'Crée un sondage',
-    async run(client, message, args){
+    async run(client, message, args, guildSettings){
         const filter = msg => msg.author.id == message.author.id;
         const collectEmbed1 = new MessageEmbed()
             .setTitle('Choisissez un titre')
@@ -30,7 +30,7 @@ module.exports = {
             message.channel.send({embeds: [collectEmbed2]});
 
             const collector2 = message.channel.createMessageCollector({filter, time:60000});
-
+            const pollChannel = client.channels.cache.get(guildSettings.pollChannel);
 
             collector2.on('collect', collected => {
                 const question = collected;
@@ -44,7 +44,7 @@ module.exports = {
                     .setColor('DARK_VIVID_PINK')
                     .setFooter({text:`Sondage généré par ${message.author.username}`})
                     .setTimestamp();
-                const poll = message.channel.send({embeds: [embed], fetchReply:true});
+                const poll = pollChannel.send({embeds: [embed], fetchReply:true});
             });
             collector2.on('end', collected => {
                 if(collected.size == 0) return message.channel.send("Commande annulée.");
@@ -68,10 +68,10 @@ module.exports = {
             required:true
         }
     ],
-    async runInteraction(client, interaction){
+    async runInteraction(client, interaction, guildSettings){
         const pollTitle = interaction.options.getString("title");
         const pollContent = interaction.options.getString('question');
-        const pollChannel = client.channels.cache.get('968151238908715128');
+        const pollChannel = client.channels.cache.get(guildSettings.pollChannel);
 
         const embed = new MessageEmbed()
             .setAuthor({name:`Nouveau sondage de la part de ${interaction.user.tag} !`, iconURL:interaction.user.displayAvatarURL()})
