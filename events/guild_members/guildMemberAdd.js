@@ -34,5 +34,6 @@ module.exports = {
             .setTimestamp();
         const airportChannel = client.channels.cache.get(fetchGuild.airportChannel);
         airportChannel.send({embeds: [publicEmbed]});
+        console.log("Fonction executée");
     }
 }
