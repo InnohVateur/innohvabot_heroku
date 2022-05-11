@@ -28,7 +28,7 @@ module.exports = {
             .setColor('RED')
             .setFooter({text:"Nouveau report"});
         
-        message.channel.send("Fil créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.")
+        message.channel.send("Report créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.")
 
     },
     options:[
@@ -48,10 +48,6 @@ module.exports = {
             .setDescription(report)
             .setColor('RED')
             .setFooter({text:"Nouveau report"});
-        reportChannel.threads.create({name:`Report de ${interaction.user.username}`}).then(thread => {
-            thread.members.add(interaction.user);
-            thread.send({embeds: [embed], components: [buttons]});
-        });
-        interaction.reply({content:"Fil créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.", ephemeral:true})
+        interaction.reply({content:"Report créé ! Vous pouvez désormais attendre qu'un modérateur vous contacte.", ephemeral:true})
     }
 }

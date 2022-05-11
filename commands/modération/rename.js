@@ -1,6 +1,6 @@
 module.exports = {
     name : 'rename',
-    description: 'Renvoie la latence',
+    description: 'Renomme un utilisateur',
     permissions:['MANAGE_NICKNAMES'],
     ownerOnly:false,
     usage:'rename [@membre] [Nouveau pseudo] <raison(slash commands uniquement)>',
@@ -10,8 +10,10 @@ module.exports = {
     async run(client, message, args){
         if(args[0]) return message.channel.send('Merci de préciser une cible.');
         const target = message.mentions.members.find(m => m.id);
-        const nickname = args.slice(1).join(' ');
-        target.setNickname(nickname);
+        const nickname = target.nickname;
+        const newNickname = args.slice(1).join(' ');
+        target.setNickname(newNickname);
+        message.channel.send(`Le membre ${nickname} a bien été renommé en \`${newNickname}\` !`);
     },
     options:[
         {
@@ -35,12 +37,14 @@ module.exports = {
     ],
     async runInteraction(client, interaction){
         const target = interaction.options.getMember('target');
-        const nickname = interaction.options.getString('nickname');
+        const newNickname = interaction.options.getString('nickname');
         const reason = interaction.options.getString('reason');
         if(reason){
-            target.setNickname(nickname, reason);
+            target.setNickname(newNickname, reason);
+            interaction.reply({content:`Le membre ${nickname} a bien été renommé en \`${newNickname}\` avec la raison ${reason}!`, ephemeral:true});
         }else {
-            target.setNickname(nickname);
+            target.setNickname(newNickname);
+            interaction.reply({content:`Le membre ${nickname} a bien été renommé en \`${newNickname}\` !`, ephemeral:true});
         }
     }
 }
