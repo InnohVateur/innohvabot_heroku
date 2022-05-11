@@ -39,6 +39,7 @@ module.exports = {
         const target = interaction.options.getMember('target');
         const newNickname = interaction.options.getString('nickname');
         const reason = interaction.options.getString('reason');
+        const nickname = target.nickname;
         if(reason){
             target.setNickname(newNickname, reason);
             interaction.reply({content:`Le membre ${nickname} a bien été renommé en \`${newNickname}\` avec la raison ${reason}!`, ephemeral:true});
