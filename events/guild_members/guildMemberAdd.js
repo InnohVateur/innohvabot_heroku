@@ -5,10 +5,10 @@ module.exports = {
     name: 'guildMemberAdd',
     once: false,
     async execute(client, member) {
-        const creationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
-        const relativeCreationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
-        const joinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
-        const relativeJoinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
+        var creationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
+        var relativeCreationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
+        var joinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
+        var relativeJoinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
 
         const fetchGuild = await client.getGuild(member.guild);
 
@@ -23,7 +23,7 @@ module.exports = {
             `)
             .setThumbnail(member.user.displayAvatarURL())
             .setAuthor({name:`${member.user.tag} (${member.id})`, iconURL:member.user.displayAvatarURL()});
-        const logChannel = client.channels.cache.get(fetchGuild.logChannel);
+        var logChannel = client.channels.cache.get(fetchGuild.logChannel);
         logChannel.send({embeds: [embed]});
 
         const publicEmbed = new MessageEmbed()
@@ -33,7 +33,7 @@ module.exports = {
             .setThumbnail(member.user.displayAvatarURL())
             .setFooter({text:`Nouveau membre sur le serveur ${member.guild.name} !`, iconURL:member.guild.iconURL()})
             .setTimestamp();
-        const airportChannel = client.channels.cache.get(fetchGuild.airportChannel);
+        var airportChannel = client.channels.cache.get(fetchGuild.airportChannel);
         airportChannel.send({embeds: [publicEmbed]});
         console.log("Fonction executée");
     }
