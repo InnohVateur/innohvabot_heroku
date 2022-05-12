@@ -38,7 +38,8 @@ module.exports = {
         const exitTimestamp = Formatters.time(dayjs().unix(), Formatters.TimestampStyles.ShortDateTime);
         const relativeExitTimestamp = Formatters.time(dayjs().unix(), Formatters.TimestampStyles.RelativeTime);
 
-        const fetchGuild = await client.getGuild(member.guild);
+        const fetchGuild = await client.getGuild(member.guild.id);
+
         const embed = new MessageEmbed()
             .setTitle(`Un membre a quitté le serveur \`${member.guild.name}\` (\`${member.guild.id}\`)`)
             .setColor('LIGHT_GREY')
