@@ -42,10 +42,10 @@ module.exports = {
         const nickname = target.nickname;
         if(reason){
             target.setNickname(newNickname, reason);
-            interaction.reply({content:`Le membre ${nickname} a bien été renommé en \`${newNickname}\` avec la raison ${reason}!`, ephemeral:true});
+            interaction.reply({content:`Le membre a bien été renommé en \`${newNickname}\` avec la raison ${reason}!`, ephemeral:true});
         }else {
             target.setNickname(newNickname);
-            interaction.reply({content:`Le membre ${nickname} a bien été renommé en \`${newNickname}\` !`, ephemeral:true});
+            interaction.reply({content:`Le membre a bien été renommé en \`${newNickname}\` !`, ephemeral:true});
         }
     }
 }
