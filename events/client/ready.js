@@ -1,8 +1,8 @@
 const Logger = require('../../utils/Logger')
 
 module.exports = {
-    name : 'ready',
-    once : true,
+    name: 'ready',
+    once: true,
     async execute(client) {
         let guildsCount = await client.guilds.fetch();
         let usersCount = client.guilds.cache.reduce((a, g) => a + g.memberCount, 0);

@@ -2,8 +2,8 @@ const dayjs = require("dayjs");
 const { MessageEmbed, Formatters } = require("discord.js");
 
 module.exports = {
-    name : 'guildMemberAdd',
-    once : false,
+    name: 'guildMemberAdd',
+    once: false,
     async execute(client, member) {
         const creationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
         const relativeCreationTimestamp = Formatters.time(dayjs(member.user.createdTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
@@ -11,7 +11,7 @@ module.exports = {
         const relativeJoinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
 
         const fetchGuild = await client.getGuild(member.guild);
-        
+
         const embed = new MessageEmbed()
             .setTitle(`Nouveau membre sur le serveur \`${member.guild.name}\` (\`${member.guild.id}\`)`)
             .setColor('LIGHT_GREY')
