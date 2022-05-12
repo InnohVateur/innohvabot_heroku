@@ -2,10 +2,8 @@ const { Client, Collection } = require('discord.js');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
-const client = new Client({intents: 98045, partials: ['USER', 'CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'REACTION', 'GUILD_SCHEDULED_EVENT']});
+const client = new Client({intents: 1537, partials: ['USER', 'CHANNEL', 'MESSAGE', 'REACTION', 'GUILD_SCHEDULED_EVENT']});
 const Logger = require('./utils/Logger');
-//const disbut = require('discord-buttons');
-//disbut(client);
 
 ['commands', 'buttons', 'selects'].forEach(x => client[x] = new Collection());
 ['CommandUtil', 'EventUtil', 'ButtonUtil', 'SelectUtil'].forEach(handler => { require(`./utils/handlers/${handler}`)(client) });
