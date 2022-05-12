@@ -10,7 +10,7 @@ module.exports = {
         const joinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.ShortDateTime);
         const relativeJoinTimestamp = Formatters.time(dayjs(member.user.joinedTimestamp).unix(), Formatters.TimestampStyles.RelativeTime);
 
-        const fetchGuild = await client.getGuild(member.guild.id);
+        const fetchGuild = await client.getGuild(member.guild);
 
         const embed = new MessageEmbed()
             .setTitle(`Nouveau membre sur le serveur \`${member.guild.name}\` (\`${member.guild.id}\`)`)
