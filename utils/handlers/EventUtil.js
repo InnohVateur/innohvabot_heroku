@@ -14,10 +14,8 @@ module.exports = async client => {
         Logger.event(`- ${event.name}...`);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(client, ...args));
-            console.log(eventFile);
         } else {
             client.on(event.name, (...args) => event.execute(client, ...args));
-            console.log(eventFile);
         }
     })
 }
